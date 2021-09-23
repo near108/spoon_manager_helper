@@ -1,0 +1,28 @@
+{
+    "manifest_version": 3,
+    "name": "spoon_manager_tools",
+    "short_name": "smt",
+    "version": "0.1.74",
+    "description": "spoonLIVE配信におけるマネージャー業務の自動化を実現します。",
+    "permissions": [
+        "tabs"
+    ],
+    "content_scripts": [
+        {
+            "matches": [
+                "https://www.spooncast.net/jp/live/*"
+            ],
+            "run_at": "document_end",
+            "all_frames": true,
+            "js": [
+                "common.js",
+                "commentController.js",
+                "infomationController.js",
+                "main.js"
+            ]
+        }
+    ],
+    "action": {
+        "default_popup": "html/popup.html"
+    }
+}
