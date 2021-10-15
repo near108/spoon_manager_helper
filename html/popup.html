@@ -5,6 +5,7 @@
     <meta charset="utf-8">
     <script type="text/javascript" src="main.js"></script>
     <script defer type="text/javascript" src="popup.js"></script>
+    <script defer type="text/javascript" src="../controller/authController.js"></script>
 </head>
 
 <body style="min-width:250px">
@@ -15,6 +16,14 @@
             <div>
                 <input id="export_csv" type="button" value="CSV出力">
             </div>
+        </form>
+
+        <form action="">
+            <label for="secretId">シークレットID</label>
+            <input type="text" name="secretId" id="secretId" />
+            <label for="secretKey">シークレットキー</label>
+            <input type="text" name="secretKey" id="secretKey" />
+            <input type="button" value="認証情報登録" id="auth" />
         </form>
     </div>
 </body>

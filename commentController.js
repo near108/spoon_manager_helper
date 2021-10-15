@@ -1,4 +1,5 @@
 class CommentController {
+
     constructor() {
         this.records = [];
     }
@@ -6,10 +7,18 @@ class CommentController {
     start() {
         var self = this;
         console.log('commnet describer is stated.');
-        this.getComment(self);
+
+        // コメント取得
+        this.getComment(self, function (comment) {
+            // コメント取得時処理
+            self.records.push(comment);
+            chrome.storage.local.set({ comments: self.records }, function () {
+                console.log("stored comment.");
+            });
+        });
     }
 
-    getComment(self) {
+    getComment(self, callback) {
         var announce = document.getElementsByClassName('comment');
 
         if (announce[announce.length - 1] != lastComment) {
@@ -26,14 +35,10 @@ class CommentController {
                     text: lastCommentText
                 };
                 // console.log(comment);
-                // chrome.runtime.sendMessage(comment);
-                self.records.push(comment);
-                chrome.storage.local.set({ comments: self.records }, function () {
-                    console.log("stored comment.");
-                });
+                callback(comment);
             }
         }
-        setTimeout(self.getComment, 100, self);
+        setTimeout(self.getComment, 100, self, callback);
     };
 
 }

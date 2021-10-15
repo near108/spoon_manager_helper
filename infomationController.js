@@ -7,10 +7,15 @@ class InfomationController {
     start() {
         var self = this;
         console.log("infomation describer is started");
-        this.getInfomation(self);
+        this.getInfomation(self, function (record) {
+            self.records.push(record);
+            chrome.storage.local.set({ infomations: self.records }, function () {
+                console.log("stored info.");
+            });
+        });
     }
 
-    getInfomation(self) {
+    getInfomation(self, callback) {
         // console.log(self.records);
         let time = getTime();
         console.log(time);
@@ -23,13 +28,9 @@ class InfomationController {
                 total: getTotalListener()
             };
             // console.log(record);
-            self.records.push(record);
-            chrome.storage.local.set({ infomations: self.records }, function () {
-                console.log("stored info.");
-            });
-            // chrome.runtime.sendMessage(record);
+            callback(record);
         }
-        setTimeout(self.getInfomation, 1000, self);
+        setTimeout(self.getInfomation, 1000, self, callback);
     }
 }
 

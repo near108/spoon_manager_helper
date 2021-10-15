@@ -2,7 +2,7 @@
     "manifest_version": 3,
     "name": "spoon_manager_tools",
     "short_name": "smt",
-    "version": "0.2.28",
+    "version": "0.3.14",
     "description": "spoonLIVE配信におけるマネージャー業務の自動化を実現します。",
     "permissions": [
         "tabs",
